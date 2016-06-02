@@ -1,0 +1,102 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+/**
+*CONTENTS
+*
+*SETTINGS
+* variables...............变量集中存储文件
+* mixin...................mixin集中存储文件
+*
+*TOOLS
+*
+*COMPONENTS
+*reset..........compass内置浏览器重置样式文件
+*
+*BUSINESS
+*
+*BASE
+*screen.scss.........针对当前站点主页的样式修饰
+*
+*
+**/
+
+@import "compass/reset";
+@import "variables";
+@import "mixin";
+//主标题样式
+.headline{
+    font-family: $headline-ff;
+
+    .main{
+        font-family: $headline-ff;
+        font:{
+            size:16px;
+            weight: 900;
+        }
+    }
+}
+
+//@at-root跳出选择器嵌套的
+//没有跳出
+.parent-1 {
+    color:#f00;
+    .child {
+        width:100px;
+    }
+}
+
+//单个选择器跳出
+.parent-2 {
+    color:#f00;
+    @at-root .child {
+        width:200px;
+    }
+}
+
+//多个选择器跳出
+.parent-3 {
+    background:#f00;
+    @at-root {
+        .child1 {
+            width:300px;
+        }
+        .child2 {
+            width:400px;
+        }
+    }
+}
+
+a{
+    &:hover{
+        color:blue;
+    }
+}
+
+//HSL:色彩的饱和度
+p{
+    height : (500px/2);
+    color : hsl(270,100%,50%);
+}
+
+.webdemo-sec{
+    @include col-sm();
+    &:hover{
+        background-color: #f5f5f5;
+    }
+}
+
+.error.demo{
+    background: #8000ff;
+}
+%error{
+    color: #f00;
+}
+.serious-error{
+    @extend %error;
+    border:1px solid #456897;
+}
+//extend 1.不可继承选择权序列
+//2.%是构建一个用来继承的选择器

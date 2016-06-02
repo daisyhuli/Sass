@@ -1,0 +1,37 @@
+$headline-ff : Arial,Verdana,Helvetica,sans-serif;
+
+$baseLineHeight:        2;
+$baseLineHeight:        1.5 !default;
+
+//特殊变量 #{$variables}
+//变量作为属性或在某些特殊情况下
+$borderDirection:       top !default;
+
+//应用于class和属性
+.border-#{$borderDirection}{
+    border-#{$borderDirection}:1px solid #ccc;
+}
+
+
+//多值变量
+
+//list数据可通过空格，逗号或小括号分隔多个值，可用nth($var,$index)取值
+$linkColor:         #08c #333 !default;//第一个值为默认值，第二个鼠标滑过值
+a{
+    color:nth($linkColor,1);
+
+    &:hover{
+        color:nth($linkColor,2);
+    }
+}
+
+//map
+//格式为：$map: (key1: value1, key2: value2, key3: value3);
+//map-get($map,$key)取值。关于map数据还有很多其他函数如map-merge($map1,$map2)，map-keys($map)，map-values($map)等，具体可
+$heading: (h1: 2em, h2: 1.5em, h3: 1.2em);
+@each $header, $size in $heading {
+    #{$header} {
+        font-size: $size;
+    }
+}
+
